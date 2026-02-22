@@ -1,14 +1,24 @@
 ---
-title: "Informe"
-
-
-hola <- "hi"
-print(hola)
-
-
-
-
-
-output: html_document
+title: "Análisis de precios de carros para invertir"
+author:
+- Valeria Morillo
+- Carlos Núñez
+date: "22/02/2026"
+output:
+  pdf_document:
+    toc: false
+  html_document:
+    theme: yeti
+    toc: true
+    toc_float: true
 ---
 
+\newpage
+\tableofcontents
+\newpage
+
+## Análisis de precios de carros para invertir.
+
+### ola.
+\newpage
+Rebeca
