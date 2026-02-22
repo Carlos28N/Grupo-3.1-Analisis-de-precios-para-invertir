@@ -1,0 +1,14 @@
+---
+title: "Informe"
+
+
+hola <- "hi"
+print(hola)
+
+
+
+
+
+output: html_document
+---
+
