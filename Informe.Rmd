@@ -6,50 +6,100 @@ date: "22/02/2026"
 output:
   pdf_document:
     number_sections: true
-
 ---
 \begin{center}
-{\bf Universidad Central de Venezuela} \\
-Facultad de Ciencias Económicas y Sociales \\
-Escuela de Estadística y Ciencias Actuariales
+  % Bloque 1: Del logo
+  \begin{minipage}[c]{0.20\textwidth}
+    \includegraphics[width=\textwidth]{Ingur/logoUCV.png}
+  \end{minipage}%
+  \begin{minipage}[c]{0.75\textwidth}
+    \begin{center}
+    {\bf \large Universidad Central de Venezuela} \\
+    {\bf \large Facultad de Ciencias Económicas y Sociales} \\
+    {\bf \large Escuela de Estadística y Ciencias Actuariales}
+    \end{center}
+    \end{minipage}
 \end{center}
 
-\vspace{8cm}
+\hrule
+\vspace{4.5cm}
+
 
 \begin{center}
-{\large \bf ANÁLISIS DE PRECIOS DE CARROS PARA INVERTIR}
+  {\Large \bf ANÁLISIS DE PRECIOS DE CARROS PARA INVERTIR}
+  \vspace{1.5cm} \\
+  {\Large \bf Trabajo: Informe Académico} \\
+  \vspace{1cm}
+  {\Large Computación I}
 \end{center}
 
-\vspace{1cm}
+\vspace{2cm}
+
+\begin{minipage}[c]{0.5\textwidth}  
+  \begin{center}
+    {\bf \Large Autor:} \\
+    \large Valeria Morillo \\
+    \large Carlos Núñez \\
+  \end{center}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+  \begin{center}
+    {\bf \Large Profesor:} \\
+    \large Jesús Ochoa \\
+    \large Óliver Triveño
+  \end{center}
+\end{minipage}
 
 \begin{center}
-{\bf Trabajo: Informe Académico} 
-Computación I
+  \vfill
+  \bf \large Caracas, Febrero 2026
 \end{center}
 
-\vspace{3cm}
-
-\begin{center}
-{\bf Autor:} \\
-Valeria Morillo \\
-Carlos Núñez \\
-\vspace{0.5cm}
-{\bf Profesor:} \\
-Jesús Ochoa \\
-Óliver Triveño
-\end{center}
-
-
-\vfill
-\begin{center}
-Caracas, Febrero 2026
-\end{center}
-
+  
 \newpage
 \tableofcontents
 \newpage
 
 # Análisis de precios de carros para invertir
 
-## ola.
+## Justificación
+## Objetivos
+### Objetivo General
+### Objetivos Específicos
+## Cobertura
+### Horizontal
+### Vertical
+## Periodo de Referencil
+## Variables
+
+\newpage
+
+# Marco Teórico
+## Bases teóricas
+### Definición 1
+### Definición 2
+### Definición n
+
+\newpage
+
+# Marco Metódico
+## Bases métodicas utilizadas en el trabajo de investigación
+### Item 1
+### Item 2
+#### Item 21
+### Item 3
+
+\newpage
+
+# Análisis de Resultados
+## Presentación de resultados 1
+## Presentación de resultados 2
+## Presentación de resultados n
+
+\newpage
+
+# Conclusiones y Recomendaciones
+
+
+
 rebeca
