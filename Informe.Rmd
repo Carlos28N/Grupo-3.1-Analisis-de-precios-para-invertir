@@ -1,24 +1,55 @@
 ---
-title: "Análisis de precios de carros para invertir"
 author:
 - Valeria Morillo
 - Carlos Núñez
 date: "22/02/2026"
 output:
   pdf_document:
-    toc: false
-  html_document:
-    theme: yeti
-    toc: true
-    toc_float: true
+    number_sections: true
+
 ---
+\begin{center}
+{\bf Universidad Central de Venezuela} \\
+Facultad de Ciencias Económicas y Sociales \\
+Escuela de Estadística y Ciencias Actuariales
+\end{center}
+
+\vspace{8cm}
+
+\begin{center}
+{\large \bf ANÁLISIS DE PRECIOS DE CARROS PARA INVERTIR}
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+{\bf Trabajo: Informe Académico} 
+Computación I
+\end{center}
+
+\vspace{3cm}
+
+\begin{center}
+{\bf Autor:} \\
+Valeria Morillo \\
+Carlos Núñez \\
+\vspace{0.5cm}
+{\bf Profesor:} \\
+Jesús Ochoa \\
+Óliver Triveño
+\end{center}
+
+
+\vfill
+\begin{center}
+Caracas, Febrero 2026
+\end{center}
 
 \newpage
 \tableofcontents
 \newpage
 
-## Análisis de precios de carros para invertir.
+# Análisis de precios de carros para invertir
 
-### ola.
-\newpage
-Rebeca
+## ola.
+rebeca
