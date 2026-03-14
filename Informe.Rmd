@@ -1,0 +1,210 @@
+---
+author:
+- Valeria Morillo
+- Carlos Núñez
+date: "22/02/2026"
+output:
+  pdf_document:
+    number_sections: true
+---
+\begin{center}
+  % Bloque 1: Del logo
+  \begin{minipage}[c]{0.20\textwidth}
+    \includegraphics[width=\textwidth]{Ingur/logoUCV.png}
+  \end{minipage}%
+  \begin{minipage}[c]{0.75\textwidth}
+    \begin{center}
+    {\bf \large Universidad Central de Venezuela} \\
+    {\bf \large Facultad de Ciencias Económicas y Sociales} \\
+    {\bf \large Escuela de Estadística y Ciencias Actuariales}
+    \end{center}
+    \end{minipage}
+\end{center}
+
+\hrule
+\vspace{4.5cm}
+
+
+\begin{center}
+  {\Large \bf ANÁLISIS DE PRECIOS DE CARROS PARA INVERTIR}
+  \vspace{1.5cm} \\
+  {\Large \bf Trabajo: Informe Académico} \\
+  \vspace{1cm}
+  {\Large Computación I}
+\end{center}
+
+\vspace{2cm}
+
+\begin{minipage}[c]{0.5\textwidth}  
+  \begin{center}
+    {\bf \Large Autor:} \\
+    \large Valeria Morillo \\
+    \large Carlos Núñez \\
+  \end{center}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+  \begin{center}
+    {\bf \Large Profesor:} \\
+    \large Jesús Ochoa \\
+    \large Óliver Triveño
+  \end{center}
+\end{minipage}
+
+\begin{center}
+  \vfill
+  \bf \large Caracas, Febrero 2026
+\end{center}
+
+  
+\newpage
+\tableofcontents
+\newpage
+
+
+```{r echo=FALSE}
+data_set <- "https://raw.githubusercontent.com/Carlos28N/Grupo-3.1-Analisis-de-precios-para-invertir/refs/heads/main/precios_de_carros.csv"
+
+
+download.file(data_set, "precios_de_carros.csv")
+
+
+# Librería
+library(tidyverse)
+
+
+
+# Lectura
+pc <- read_csv("precios_de_carros.csv")
+
+
+realdt <- pc %>%
+  rename(
+    ID = "Car ID",
+    Marca = "Brand",
+    Año = "Year",
+    Tamaño_del_motor = "Engine Size",
+    Tipo_de_gasolina = "Fuel Type",
+    Transmisión = "Transmission",
+    Kilometraje = "Mileage",
+    Condición = "Condition",
+    Precio = "Price",
+    Modelo = "Model",
+  )
+
+realdt %>%
+  distinct(Tipo_de_gasolina)
+  
+realdt %>%
+  distinct(Transmisión)
+  
+realdt %>%
+  distinct(Condición)
+
+realdt <- realdt %>%
+  mutate(Tipo_de_gasolina = recode(Tipo_de_gasolina, 
+                                    "Petrol" = "Gasolina", 
+                                    "Electric" = "Eléctrico", 
+                                    "Diesel" = "Diésel", 
+                                    "Hybrid" = "Híbrido"),
+         Transmisión = recode(Transmisión, 
+                              "Manual" = "Manual", 
+                              "Automatic" = "Automático"),
+         Condición = recode(Condición,
+                            "New" = "Nuevo", 
+                            "Used" = "Usado",
+                            "Like New" = "Casi nuevo")
+  )
+  
+realdt %>%
+  distinct(Tipo_de_gasolina)
+  
+realdt %>%
+  distinct(Transmisión)
+  
+realdt %>%
+  distinct(Condición)
+
+# Inspección
+glimpse(realdt)
+
+```
+
+
+```{r echo=FALSE}
+library(tidyverse)
+realdt %>%
+  filter(if_any(everything(), is.na)) %>%
+  nrow()
+
+realdt %>%
+  filter(if_any(everything(), is.na)) %>%
+  group_by(Precio) %>%
+  nrow()
+
+
+
+colnames = 
+for (columna in colnames(realdt)) {
+  print(paste("Columna: ", columna))
+  
+  conteo <- realdt %>%
+    filter(columna != "Modelo") %>%
+    filter(if_any(everything(), is.na)) %>%
+    group_by(.data[[columna]]) %>%
+    nrow()
+  
+  print(conteo)
+}
+
+
+
+
+```
+
+
+
+
+
+# Análisis de precios de carros para invertir
+
+## Justificación
+## Objetivos
+### Objetivo General
+### Objetivos Específicos
+## Cobertura
+### Horizontal
+### Vertical
+## Periodo de Referencil
+## Variables
+
+\newpage
+
+# Marco Teórico
+## Bases teóricas
+### Definición 1
+### Definición 2
+### Definición n
+
+\newpage
+
+# Marco Metódico
+## Bases métodicas utilizadas en el trabajo de investigación
+### Item 1
+### Item 2
+#### Item 21
+### Item 3
+
+\newpage
+
+# Análisis de Resultados
+## Presentación de resultados 1
+## Presentación de resultados 2
+## Presentación de resultados n
+
+\newpage
+
+# Conclusiones y Recomendaciones
+
+
+
+rebeca
