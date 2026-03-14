@@ -60,6 +60,111 @@ output:
 \tableofcontents
 \newpage
 
+
+```{r echo=FALSE}
+data_set <- "https://raw.githubusercontent.com/Carlos28N/Grupo-3.1-Analisis-de-precios-para-invertir/refs/heads/main/precios_de_carros.csv"
+
+
+download.file(data_set, "precios_de_carros.csv")
+
+
+# Librería
+library(tidyverse)
+
+
+
+# Lectura
+pc <- read_csv("precios_de_carros.csv")
+
+
+realdt <- pc %>%
+  rename(
+    ID = "Car ID",
+    Marca = "Brand",
+    Año = "Year",
+    Tamaño_del_motor = "Engine Size",
+    Tipo_de_gasolina = "Fuel Type",
+    Transmisión = "Transmission",
+    Kilometraje = "Mileage",
+    Condición = "Condition",
+    Precio = "Price",
+    Modelo = "Model",
+  )
+
+realdt %>%
+  distinct(Tipo_de_gasolina)
+  
+realdt %>%
+  distinct(Transmisión)
+  
+realdt %>%
+  distinct(Condición)
+
+realdt <- realdt %>%
+  mutate(Tipo_de_gasolina = recode(Tipo_de_gasolina, 
+                                    "Petrol" = "Gasolina", 
+                                    "Electric" = "Eléctrico", 
+                                    "Diesel" = "Diésel", 
+                                    "Hybrid" = "Híbrido"),
+         Transmisión = recode(Transmisión, 
+                              "Manual" = "Manual", 
+                              "Automatic" = "Automático"),
+         Condición = recode(Condición,
+                            "New" = "Nuevo", 
+                            "Used" = "Usado",
+                            "Like New" = "Casi nuevo")
+  )
+  
+realdt %>%
+  distinct(Tipo_de_gasolina)
+  
+realdt %>%
+  distinct(Transmisión)
+  
+realdt %>%
+  distinct(Condición)
+
+# Inspección
+glimpse(realdt)
+
+```
+
+
+```{r echo=FALSE}
+library(tidyverse)
+realdt %>%
+  filter(if_any(everything(), is.na)) %>%
+  nrow()
+
+realdt %>%
+  filter(if_any(everything(), is.na)) %>%
+  group_by(Precio) %>%
+  nrow()
+
+
+
+colnames = 
+for (columna in colnames(realdt)) {
+  print(paste("Columna: ", columna))
+  
+  conteo <- realdt %>%
+    filter(columna != "Modelo") %>%
+    filter(if_any(everything(), is.na)) %>%
+    group_by(.data[[columna]]) %>%
+    nrow()
+  
+  print(conteo)
+}
+
+
+
+
+```
+
+
+
+
+
 # Análisis de precios de carros para invertir
 
 ## Justificación
