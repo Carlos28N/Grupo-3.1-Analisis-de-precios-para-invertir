@@ -1,8 +1,4 @@
 ---
-author:
-- Valeria Morillo
-- Carlos Núñez
-date: "22/02/2026"
 output:
   pdf_document:
     number_sections: true
