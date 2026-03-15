@@ -128,29 +128,31 @@ glimpse(realdt)
 
 ```{r echo=FALSE}
 library(tidyverse)
-realdt %>%
+
+filas_vacias <- realdt %>%
+  filter(if_any(everything(), is.na))
+  print(paste("Cantidad de filas vacías en todo el documento:", nrow(filas_vacias)))
+
+filas_vacias_Precio <- realdt %>%
   filter(if_any(everything(), is.na)) %>%
-  nrow()
-
-realdt %>%
-  filter(if_any(everything(), is.na)) %>%
-  group_by(Precio) %>%
-  nrow()
+  group_by(Precio)
+  print(paste("Cantidad de filas vacías de la columna Precio:", nrow(filas_vacias_Precio)))
 
 
 
-colnames = 
-for (columna in colnames(realdt)) {
-  print(paste("Columna: ", columna))
   
+for (columna in colnames(realdt)) {
+  if (columna == "Modelo") {
+    next
+  }
+  print(paste("Columna:", columna))
   conteo <- realdt %>%
-    filter(columna != "Modelo") %>%
     filter(if_any(everything(), is.na)) %>%
     group_by(.data[[columna]]) %>%
     nrow()
-  
   print(conteo)
 }
+
 
 
 
