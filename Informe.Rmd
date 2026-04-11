@@ -1,7 +1,7 @@
 ---
 output:
   pdf_document: 
-    number_sections: true
+    number_sections: false
 geometry: "left=4cm, right=2.5cm, top=3cm, bottom=3cm"
 indent: true
 fontsize: 12pt
@@ -113,23 +113,208 @@ El presente trabajo de investigación tiene como propósito realizar un análisi
 
 \newpage
 
-```{r echo=FALSE}
-data_set <- "https://raw.githubusercontent.com/Carlos28N/Grupo-3.1-Analisis-de-precios-para-invertir/refs/heads/main/precios_de_carros.csv"
+```{r include=FALSE}
+data_set_raw <- "https://raw.githubusercontent.com/Carlos28N/Grupo-3.1-Analisis-de-precios-para-invertir/refs/heads/main/precios_de_carros.csv"
 
 
-download.file(data_set, "precios_de_carros.csv")
-
+download.file(data_set_raw, "precios_de_carros.csv")
 
 # Librería
 library(tidyverse)
-
-
+library(knitr)
 
 # Lectura
-pc <- read_csv("precios_de_carros.csv")
+data_set <- read_csv("precios_de_carros.csv")
 
+# Inspección
+glimpse(data_set)
 
-realdt <- pc %>%
+```
+
+\begin{center}
+  \rule{\textwidth}{1pt}
+\end{center}
+\begin{flushright}
+  Capítulo I \\
+  \end{flushright}
+\begin{flushright}
+  {\bf\Large\ Planteamiento del Problema} \\
+\end{flushright}
+\rule{\textwidth}{2pt}
+
+El mercado global de vehículos usados ha dejado de ser una simple transacción de bienes de consumo para transformarse en un ecosistema financiero complejo, caracterizado por una volatilidad de precios que desafía las leyes tradicionales de depreciación. Para el inversor especializado y el comprador común, la adquisición de un vehículo representa un desafío crítico: identificar el punto exacto de equilibrio entre el costo de adquisición y la retención de valor a largo plazo.
+
+El problema fundamental radica en la asimetría de información y la multiplicidad de variables estocásticas que afectan el precio. Factores como el kilometraje, la marca, el tipo de combustible y la antigüedad no interactúan de manera lineal; por el contrario, presentan correlaciones no lineales que pueden convertir una inversión aparentemente segura en una pérdida de capital significativa. Desde una perspectiva de ciencia de datos y estadística, la incertidumbre se ve exacerbada por factores macroeconómicos y tendencias de mercado regionales que introducen "ruido" en los modelos de predicción tradicionales.
+
+Para el analista, el reto no consiste solo en determinar un precio promedio, sino en modelar la varianza y detectar "outliers" en el mercado: aquellos vehículos que, por sus especificaciones técnicas o condiciones de mantenimiento, actúan como activos de refugio. La falta de una metodología cuantitativa robusta que sistematice estas variables impide que el comprador optimice su retorno de inversión (ROI) y mitigue el riesgo financiero asociado a la obsolescencia tecnológica y el desgaste mecánico.
+
+\begin{itemize}
+  \item \textbf{1.} ¿Cómo afecta el precio con el año y la variedad de marcas?
+  
+  \item \textbf{2.} ¿Existen vehículos relativamente antiguos que valen igual que uno nuevo?
+ 
+  \item \textbf{3.} ¿De qué manera la comportamiento de los precios permiten detectar ofertas atípicas que se desvíen de la tendencia central del mercado?
+  
+\end{itemize}
+
+## 1.1 Justificación
+
+La relevancia de esta investigación radica en la necesidad de mitigar la asimetría de información presente en el mercado secundario automotriz. Mediante la aplicación de técnicas de Business Intelligence y estadística descriptiva, se busca transformar datos transaccionales en indicadores de valor, permitiendo que el inversionista optimice su Retorno de Inversión (ROI) basado en evidencia cuantitativa y no en criterios subjetivos.
+
+Académicamente, el estudio sistematiza una metodología reproducible en R y LaTeX, fundamental para el análisis de activos físicos sujetos a depreciación estocástica.
+
+## Objetivos
+
+### Objetivo General
+
+Analizar el comportamiento de los precios de vehículos en el mercado para identificar oportunidades de inversión y toma de decisiones.
+
+### Objetivos Específicos
+
+\begin{itemize}
+  \item \textbf{1.} Determinar el impacto del año de fabricación y la diversidad de marcas.
+  
+  \item \textbf{2.} Hallar un contraste en el mercado de vehículos usados respecto a su marca.
+ 
+  \item \textbf{3.} Analizar el comportamiento y dispersión de los precios por categoría.
+\end{itemize}
+
+## Cobertura
+
+### Horizontal
+
+La cobertura horizontal alcanza las características clasicas de cada vehículo en la base de datos. Se consideran las
+
+### Vertical
+
+La cobertura vertical cuenta con 2500 registros, de los cuales 250 están vacíos, no cuentan con ningún dato referencial para su rellenado adecuado.
+
+Tipos de variables consideras en el estudio:
+
+## Periodo de Referencia
+
+El dataset asignado proviene del Google Drive de nuestros profesores. El año mínimo de los vehículos que estudiaremos empieza desde el año 2000 hasta el vehículos del 2023.
+
+## Variables
+
+Para el desarrollo de la investigación, se han identificado las siguientes variables extraídas del conjunto de datos, clasificadas según su escala de medición y su rol dentro del análisis de inversión.
+
+\begin{itemize}
+  \item \textbf{1.} Variables temporales: Año.
+
+  \item \textbf{2.} Variables Categóricas: Transmisión, Kilometraje, Condición,  
+
+  \item \textbf{3.} Variables : 
+\end{itemize}
+
+### Análisis de la Forma y Asimetría
+
+Para detallar la distribución de los datos, se utilizaron dos indicadores clave:
+
+\begin{itemize}
+  \item \textbf{Asimetría de Peason:} Nos indica si los precios están concentrados en los valores bajos (asimetría positiva) o altos.
+  
+  $$A_p = \frac{\bar{x} - Mo}{S}$$
+  
+  \item \textbf{Kurtosis de Geary:} Se incluyó para analizar el la forma de los datos. Esta medida nos ayuda a saber si existe una gran concentración de carros en un precio específico o si los precios están muy repartidos a lo largo de todo el rango.
+  
+  $$K_{Geary} = \frac{\frac{\sum_{i=1}^{n} |X_i - \bar{X}|}{n}}{\sqrt{\frac{\sum_{i=1}^{n} (X_i - \bar{X})^2}{n}}}$$
+Los resultados obtenidos se analizarán de la siguiente manera:
+
+\begin{itemize}
+  \item \textbf{Resultado menos a 0,800:} Platicúrtica.
+  
+  \item \textbf{Resultado igual a 0,800:} Mesocórtica.
+  
+  \item \textbf{Resultado mayor a 0,800:} Leptocúrtica.
+\end{itemize}
+
+\end{itemize}
+
+#### Relación entre Variables (Correlación de Pearson)
+
+Para determinar si el precio \textbf{Y} tiene una relación lineal directa con variables como el kilometraje o el año \textbf{X}, se aplicó el Coeficiente de Correlación de Pearson ($P_{xy}$), utilizando la siguiente expresión:
+
+El resultado, que oscila entre -1 y 1, nos permite confirmar científicamente si, por ejemplo, el aumento del kilometraje reduce el precio del vehículo de forma predecible.
+
+$$\rho_{XY} = \frac{Cov(X,Y)}{\sqrt{Var(X) \cdot Var(Y)}}$$
+
+### Comparación de Grupos (Varianza)
+
+Se estudiará la variabilidad de los precios según la categoría del vehículo (SUV, Compacto, etc.). A través de la Varianza, mediremos qué tan dispersos están los precios en cada grupo. Esto nos servirá para identificar en qué categorías los precios son más estables y en cuáles hay más cambios, lo que es clave para decidir dónde invertir.
+
+$$S^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$$
+
+\newpage
+
+\begin{center}
+  \rule{\textwidth}{1pt}
+\end{center}
+\begin{flushright}
+  Capítulo II \\
+  \end{flushright}
+\begin{flushright}
+  {\bf\Large\ Marco Teoríco} \\
+\end{flushright}
+\rule{\textwidth}{2pt}
+
+## Bases teóricas
+
+El presente capítulo establece los fundamentos matemáticos y estadísticos necesarios para el análisis de los datos del registro de precios de vehículos. Se aborda la teoría desde una perspectiva descriptiva y analítica, con el fin de establecer rangos de valoración óptimos y cuantificar la variabilidad del precio en función del segmento y la marca del automóvil. El entendimiento de estos conceptos es fundamental para interpretar la volatilidad del mercado, el impacto del factor temporal (depreciación) y la influencia de las variables categóricas en la esperanza matemática del valor comercial.
+
+### Análisis Exploratorio de Datos (EDA)
+
+El Análisis Exploratorio de Datos es el pilar fundamental para resumir las características principales del mercado automotriz antes de formular modelos predictivos. Matemáticamente, para la variable continua \text \bf{P} (Precio de venta), nos interesa el estudio de sus momentos centrales:
+
+\begin{itemize}
+  \item \textbf{Esperanza Matemática(Media):} Representa el valor promedio de mercado para un conjunto de características dadas.
+  \item \textbf{Varianza:} Permite cuantificar el riesgo o la dispersión de los precios respecto a la media, lo cual es crítico para identificar oportunidades de inversión o sobreprecio.
+\end{itemize}
+
+### Renombramiento de varaibles 
+
+Se renombra las variables que están en inglés por español para su mejor comprensión. Además, se han prensendo la variable "Modelo" para que todos los leyentes puedan comprenderlo con más facilidad, dado que el dataset contiene 28 modelos distintos que requiere un nivel más avanzado de conocimiento de vehículos, sin embargo, nuestro proyecto está centrado a un público de cualquier tipo que pueda comprender los siguientes nombres: 
+
+\begin{itemize}
+  \item \textbf{SUV:} Vehículo versátil con mayor altura al suelo y capacidades de carga, diseñado para un uso mixto entre ciudad y terrenos ligeros.
+  Vehículos comprimidos en esta categoría:
+  \begin{itemize} 
+    \item RAV4, CR-V, Q5, X3, GLC, GLA, Model Y.
+  \end{itemize}
+  
+  \item \textbf{Deportivo:} Automóvil enfocado en el alto rendimiento en aceleración y velocidad, generalmente de dos puertas y diseñado para una conducción dinámica.
+  Vehículos comprimidos en esta categoría:
+  \begin{itemize} 
+    \item Mustang
+  \end{itemize}
+  
+  \item \textbf{Compacto:} Vehículo de dimensiones reducidas optimizado para la eficiencia de combustible y maniobrabilidad en entornos urbanos densos.
+  Vehículos comprimidos en esta categoría:
+  \begin{itemize} 
+    \item Fit, Fiesta, Focus, Prius, Corolla, Civic.
+  \end{itemize}
+  
+  \item \textbf{Sedán Familiar:} Auto de tres volúmenes: motor, habitáculo y maleta; con cuatro puertas, prioriza el espacio interior y la seguridad para el transporte de pasajeros.
+  Vehículos comprimidos en esta categoría:
+  \begin{itemize} 
+    \item Camry y Accord.
+  \end{itemize}
+  
+  \item \textbf{SUV de Lujo:} Vehículo utilitario deportivo que combina tracción total y espacio con acabados de alta gama, tecnología avanzada y un precio de mercado superior.
+  Vehículos comprimidos en esta categoría:
+  \begin{itemize} 
+    \item Explorer, Q7, X5, Model X.
+  \end{itemize}
+  
+  \item \textbf{Ejecutivo:} Sedán de tamaño mediano o grande diseñado para ofrecer estatus, confort superior y un rendimiento optimizado para viajes largos de negocios.
+    Vehículos comprimidos en esta categoría:
+  \begin{itemize} 
+    \item 3 Series, 5 Series, A3, A4, C-Class, E-Class, Model 3, Model S.
+  \end{itemize}
+\end{itemize}
+  
+```{r include=FALSE}
+realdt <- data_set %>%
   rename(
     ID = "Car ID",
     Marca = "Brand",
@@ -167,24 +352,6 @@ realdt <- realdt %>%
                             "Like New" = "Casi nuevo")
   )
   
-realdt %>%
-  distinct(Tipo_de_gasolina)
-  
-realdt %>%
-  distinct(Transmisión)
-  
-realdt %>%
-  distinct(Condición)
-
-realdt %>%
-  distinct(Modelo)
-
-# Inspección
-glimpse(realdt)
-
-```
-
-```{r}
 realdt <- realdt %>%
   mutate(Modelo = recode(Modelo,
   "Fit" = "Compacto",
@@ -219,147 +386,20 @@ realdt <- realdt %>%
 
 realdt %>%
   distinct(Modelo)
+
+realdt %>%
+  distinct(Tipo_de_gasolina)
+  
+realdt %>%
+  distinct(Transmisión)
+  
+realdt %>%
+  distinct(Condición)
+
+realdt %>%
+  distinct(Modelo)
 ```
 
-
-```{r eval=FALSE, include=FALSE}
-library(tidyverse)
-
-filas_vacias <- realdt %>%
-  filter(if_any(everything(), is.na))
-  print(paste("Cantidad de filas vacías en todo el documento:", nrow(filas_vacias)))
-
-filas_vacias_Precio <- realdt %>%
-  filter(if_any(everything(), is.na)) %>%
-  group_by(Precio)
-  print(paste("Cantidad de filas vacías de la columna Precio:", nrow(filas_vacias_Precio)))
-
-
-
-  
-for (columna in colnames(realdt)) {
-  if (columna == "Modelo") {
-    next
-  }
-  print(paste("Columna:", columna))
-  conteo <- realdt %>%
-    filter(if_any(everything(), is.na)) %>%
-    group_by(.data[[columna]]) %>%
-    nrow()
-  print(conteo)
-}
-
-
-
-
-
-```
-
-\begin{center}
-  \rule{\textwidth}{1pt}
-\end{center}
-\begin{flushright}
-  Capítulo I \\
-  \end{flushright}
-\begin{flushright}
-  {\bf\Large\ Planteamiento del Problema} \\
-\end{flushright}
-\rule{\textwidth}{2pt}
-
-El mercado global de vehículos usados ha dejado de ser una simple transacción de bienes de consumo para transformarse en un ecosistema financiero complejo, caracterizado por una volatilidad de precios que desafía las leyes tradicionales de depreciación. Para el inversor especializado y el comprador común, la adquisición de un vehículo representa un desafío crítico: identificar el punto exacto de equilibrio entre el costo de adquisición y la retención de valor a largo plazo.
-
-El problema fundamental radica en la asimetría de información y la multiplicidad de variables estocásticas que afectan el precio. Factores como el kilometraje, la marca, el tipo de combustible y la antigüedad no interactúan de manera lineal; por el contrario, presentan correlaciones no lineales que pueden convertir una inversión aparentemente segura en una pérdida de capital significativa. Desde una perspectiva de ciencia de datos y estadística, la incertidumbre se ve exacerbada por factores macroeconómicos y tendencias de mercado regionales que introducen "ruido" en los modelos de predicción tradicionales.
-
-Para el analista, el reto no consiste solo en determinar un precio promedio, sino en modelar la varianza y detectar "outliers" en el mercado: aquellos vehículos que, por sus especificaciones técnicas o condiciones de mantenimiento, actúan como activos de refugio. La falta de una metodología cuantitativa robusta que sistematice estas variables impide que el comprador optimice su retorno de inversión (ROI) y mitigue el riesgo financiero asociado a la obsolescencia tecnológica y el desgaste mecánico.
-
-\begin{itemize}
-  \item \bf{1.} ¿Cómo afecta el precio con el año y la variedad de marcas?
-  
-  \item \bf{2.} ¿Existen vehículos relativamente antiguos que valen igual que uno nuevo?
- 
-  \item \bf{3.} ¿De qué manera la comportamiento de los precios permiten detectar ofertas atípicas que se desvíen de la tendencia central del mercado?
-\end{itemize}
-
-## 1.1 Justificación
-
-La relevancia de esta investigación radica en la necesidad de mitigar la asimetría de información presente en el mercado secundario automotriz. Mediante la aplicación de técnicas de Business Intelligence y estadística descriptiva, se busca transformar datos transaccionales en indicadores de valor, permitiendo que el inversionista optimice su Retorno de Inversión (ROI) basado en evidencia cuantitativa y no en criterios subjetivos. 
-
-Académicamente, el estudio sistematiza una metodología reproducible en R y LaTeX, fundamental para el análisis de activos físicos sujetos a depreciación estocástica.
-
-
-## Objetivos
-
-### Objetivo General
-
-Analizar el comportamiento de los precios de vehículos en el mercado para identificar oportunidades de inversión y toma de decisiones.
-
-### Objetivos Específicos
-
-\begin{itemize}
-  \item \bf{1.} Determinar el impacto del año de fabricación y la diversidad de marcas.
-  
-  \item \bf{2.} Hallar un contraste en el mercado de vehículos usados respecto a su marca.
- 
-  \item {3.} Analizar el comportamiento y dispersión de los precios por categoría.
-\end{itemize}
-
-## Cobertura
-
-### Horizontal
-
-La cobertura horizontal alcanza las características clasicas de cada vehículo en la base de datos. Se consideran las
-
-### Vertical
-
-La cobertura vertical cuenta con 2500 registros, de los cuales 250 están vacíos, no cuentan con ningún dato referencial para su rellenado adecuado.
-
-Tipos de variables consideras en el estudio:
-
-## Periodo de Referencia
-
-El dataset asignado proviene del Google Drive de nuestros profesores. El año mínimo de los vehículos que estudiaremos empieza desde el año 2000 hasta el vehículos del 2023.
-
-## Variables
-
-Para el desarrollo de la investigación, se han identificado las siguientes variables extraídas del conjunto de datos, clasificadas según su escala de medición y su rol dentro del análisis de inversión.
-
-\begin{itemize}
-  \item \bf{1.} Variables temporales: Año.
-
-  \item \bf{2.} Variables Categóricas: Transmisión, Kilometraje, Condición,  
-
-  \item \bf{3.} Variables : 
-\end{itemize}
-
-\newpage
-
-# Marco Teórico
-
-## Bases teóricas
-
-El presente capítulo establece los fundamentos matemáticos y estadísticos necesarios para el análisis de los datos del registro de precios de vehículos. Se aborda la teoría desde una perspectiva descriptiva y analítica, con el fin de establecer rangos de valoración óptimos y cuantificar la variabilidad del precio en función del segmento y la marca del automóvil. El entendimiento de estos conceptos es fundamental para interpretar la volatilidad del mercado, el impacto del factor temporal (depreciación) y la influencia de las variables categóricas en la esperanza matemática del valor comercial.
-
-### Análisis Exploratorio de Datos (EDA)
-
-El Análisis Exploratorio de Datos es el pilar fundamental para resumir las características principales del mercado automotriz antes de formular modelos predictivos. Matemáticamente, para la variable continua \text \bf{P} (Precio de venta), nos interesa el estudio de sus momentos centrales:
-
-\begin{itemize}
-  \item \bf{Esperanza Matemática(Media):} Representa el valor promedio de mercado para un conjunto de características dadas.
-  \item \bf{Varianza:} Permite cuantificar el riesgo o la dispersión de los precios respecto a la media, lo cual es crítico para identificar oportunidades de inversión o sobreprecio.
-\end{itemize}
-
-### Variables Categóricas y Segmentación
-
-El mercado de vehículos se define por variables cualitativas nominales como la Marca, Modelo y Transmisión. Para su tratamiento estadístico, es necesario utilizar variables indicadoras o Dummy:
-
-\begin{center}
-  $D_{i} = \begin{cases}
-  1 & \text{si el vehículo } i \text{pertenece a la categoría } j \\
-  0 & \text{en otro caso}
-  \end{cases}$
-\end{center}
-
-Esto permite cuantificar el "efecto marca" sobre el precio final, manteniendo constantes otros factores como el kilometraje.
 
 
 ### Depreciación y Análisis Temporal
@@ -370,25 +410,116 @@ Dado que el Año de Fabricación es un determinante crítico, los precios pueden
 
 Para determinar el impacto de la categoría y la marca, se requiere analizar la dispersión de los datos. El coeficiente de variación y la desviación estándar permiten contrastar si el mercado de vehículos usados presenta un comportamiento homogéneo o si, por el contrario, existen "outliers" (valores atípicos) que distorsionan los rangos de precio esperados.
 
+\newpage
 
+\begin{center}
+  \rule{\textwidth}{1pt}
+\end{center}
+\begin{flushright}
+  Capítulo III \\
+  \end{flushright}
+\begin{flushright}
+  {\bf\Large\ Marco Metódico} \\
+\end{flushright}
+\rule{\textwidth}{2pt}
 
- \newpage
+En esta sección se presentan las metodologías, procedimientos algorítmicos y pruebas estadísticas implementadas para dar respuesta a las preguntas de investigación y validar el comportamiento de los precios en el mercado automotriz secundario. Se detalla el tratamiento computacional aplicado al conjunto de datos, las técnicas de limpieza (Data Wrangling) y los contrastes de hipótesis utilizados para determinar la significancia estadística de las variables predictoras.
 
-# Marco Metódico
+El análisis fue desarrollado en su totalidad utilizando el lenguaje de programación R bajo el entorno de desarrollo RStudio, empleando el ecosistema de paquetes tidyverse para la manipulación y visualización de datos.
 
 ## Bases métodicas utilizadas en el trabajo de investigación
 
-### Item 1
+El diseño de la investigación es de carácter cuantitativo y no experimental, dado que se analizan datos observacionales del mercado sin manipulación directa de las variables estocásticas por parte del investigador. A continuación, se describen las fases del procesamiento analítico:
 
-### Item 2
+### Procesamiento y Limpieza de Datos (ETL)
 
-#### Item 21
+La solidez de los modelos estadísticos depende directamente de la integridad estructural del conjunto de datos de entrada. El proceso de Extracción, Transformación y Carga (ETL) se enfocó en dos grandes correcciones:
 
-### Item 3
+
+#### Inspección de vehículos eléctricos
+
+Se llevó a cabo una corrección de valores atípicos e imposibles mediante la reasignación del Tamaño_del_motor a 0 para todos los vehículos de categoría eléctrica. Este ajuste elimina errores de registro y alinea el dataset con las especificaciones técnicas reales de esta tecnología.
+
+```{r echo=FALSE}
+
+valor_temporal <- realdt %>% 
+  filter(Tipo_de_gasolina == "Eléctrico" & Tamaño_del_motor > 0)  
+
+print(paste("Eléctricos con tamaño del motor > 0 (imposible):", nrow(valor_temporal)))
+
+realdt <- realdt %>%
+  mutate(Tamaño_del_motor = if_else(Tipo_de_gasolina == "Eléctrico", 0, Tamaño_del_motor))
+```
+
+#### Tratamiento de Valores Faltantes (Missing Values 
+
+El dataset original constaba de 2.500 observaciones. Tras un análisis de calidad de datos, se identificaron 250 filas completamente vacías (ausencia total de información en todas las variables). Dado que no existían datos referenciales que permitieran aplicar técnicas de imputación (como la media), se optó por la eliminación por lista (listwise deletion), resultando en un conjunto final de 2.250 registros válidos.
+  
+#### Conversión de millas a kilómetros.
+
+Kilometraje original en millaje (ejemplo fila 1):
+```{r echo=FALSE}
+realdt %>%
+  select(Marca, Año, Kilometraje) %>%
+  head(1) %>%
+  kable(format = "simple", caption = "Muestra de datos")
+```
+
+Kilometraje real multiplicado por 1.60934 y redondeado (ejemplo fila 1):
+```{r echo=FALSE}
+realdt <- realdt %>%
+  mutate(Kilometraje = round(Kilometraje * 1.60934, 0))
+
+realdt %>%
+  select(Marca, Año, Kilometraje) %>%
+  head(1) %>%
+  kable(format = "simple", caption = "Muestra de datos")
+```
+
+#### Filtrado de datos atípicos
+
+De acuerdo con los datos publicados por la Federal Highway Administration (FHWA) en su reporte Highway Statistics, el promedio de recorrido anual para un vehículo en los Estados Unidos es de aproximadamente 13,500 millas (equivalentes a ~21,726 km).
+
+Tomando este valor como métrica de referencia, se ha determinado que un vehículo con un uso estándar de 10 años debería presentar un kilometraje cercano a los 217,000 km. Por consiguiente, cualquier registro que exceda significativamente este umbral o que presente inconsistencias temporales, será tratado mediante el siguiente filtro robusto:
+\begin{itemize}
+  \item \textbf{Eliminación de datos 1:} De vehículos mayores del año 2020 que contengan un kilometraje mayor a 150000.
+  \item \textbf{Eliminación de datos 2:} De vehículos mayores del año 2015 que contengan un kilometraje mayor a 280000.
+  \item \textbf{Eliminación de datos 3:} De vehículos mayores del año 2000 que contengan un kilometraje mayor a 450000. 
+  \item \textbf{Eliminación de datos 4:} Datos de filas totalmente vacías. 
+\end{itemize}  
+```{r echo=FALSE}
+# Parámetros casi imposibles:
+print(paste("Total vehículos antes de filtrar:", nrow(realdt)))
+
+realdt <- realdt %>%
+  filter(
+  !(Año > 2020 & Kilometraje > 150000),
+  !(Año > 2015 & Kilometraje > 280000),
+  !(Año > 2000 & Kilometraje > 450000)
+)
+
+realdt <- realdt %>%
+  filter(!is.na(Marca))
+
+print(paste("Total vehículos después de filtrar:", nrow(realdt)))
+```
+
+\end{itemize}
+
+
 
 \newpage
 
-# Análisis de Resultados
+\begin{center}
+  \rule{\textwidth}{1pt}
+\end{center}
+\begin{flushright}
+  Capítulo IV \\
+  \end{flushright}
+\begin{flushright}
+  {\bf\Large\ Análisis de Resultados} \\
+\end{flushright}
+\rule{\textwidth}{2pt}
 
 ## Presentación de resultados 1
 
