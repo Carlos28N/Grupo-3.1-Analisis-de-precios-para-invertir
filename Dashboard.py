@@ -7,7 +7,7 @@ st.set_page_config(page_title="Dashboard de Inventario", layout="wide")
 
 st.markdown("""
     <style>
-    /* 1. FONDO NOCTURNO MODERNO */
+    /* FONDO NOCTURNO */
     .stApp { 
         background-color: #0B0E14; 
     }
@@ -17,7 +17,7 @@ st.markdown("""
         border-right: 1px solid #30363D;
     }
 
-    /* 2. TÍTULOS CON ESTILO SAKURA */
+    /* TÍTULOS */
     h1, h2, h3 {
         color: #FFC0CB !important; /* Rosa Pastel */
         font-family: 'Inter', sans-serif;
@@ -28,7 +28,7 @@ st.markdown("""
         color: #F0F6FC !important; /* Blanco Perla */
     }
 
-    /* 3. FILTROS (DISEÑO CLEAN TECH) */
+    /* FILTROS (DISEÑO CLEAN TECH)*/
     div[data-baseweb="select"] > div {
         background-color: #0B0E14 !important;
         border: 1px solid #FFC0CB !important; /* Borde rosa neón finito */
@@ -48,16 +48,16 @@ st.markdown("""
         font-weight: 800 !important;
     }
 
-    /* 4. MÉTRICAS (KPIs) TIPO CRISTAL */
+    /* MÉTRICAS (KPIs)*/
     div[data-testid="metric-container"] {
         background-color: #161B22;
         border: 1px solid #30363D;
-        border-top: 3px solid #FFC0CB; /* "Techo" rosa pastel */
+        border-top: 3px solid #FFC0CB; /* rosa pastel */
         border-radius: 12px;
         padding: 20px;
     }
 
-    /* 5. EL FAMOSO SLIDER (LÍNEA DE AÑOS) EN ROSA */
+    /* LÍNEA DE AÑOS EN ROSA */
     div[data-baseweb="slider"] > div > div > div {
         background-color: #FFB6C1 !important;
     }
@@ -70,8 +70,6 @@ st.markdown("""
         background-color: #FFC0CB !important;
         box-shadow: 0 0 10px #FFC0CB;
     }
-
-    /* --- ESTO ES LO NUEVO QUE VAS A PEGAR AQUÍ --- */
     div[data-baseweb="slider"] > div + div {
         display: none !important;
     }
@@ -79,7 +77,7 @@ st.markdown("""
         color: #FFC0CB !important;
         font-weight: bold !important;
     }
-            /* ESTILO PARA LAS PESTAÑAS (TABS) */
+            /* TABS */
     button[data-baseweb="tab"] {
         background-color: transparent !important;
         color: #F0F6FC !important; /* Texto blanco perla */
@@ -87,7 +85,6 @@ st.markdown("""
         font-weight: bold !important;
     }
     
-    /* Pestaña seleccionada (Activa) */
     button[data-baseweb="tab"][aria-selected="true"] {
         background-color: #FFC0CB !important; /* Rosa Pastel */
         color: #0B0E14 !important; /* Texto oscuro para que resalte */
@@ -98,16 +95,13 @@ st.markdown("""
 
 @st.cache_data
 def cargar_datos():
-    # Ahora leemos directamente el archivo que ya limpiamos
     df = pd.read_csv("dataset_limpio.csv")
     return df
 
 df = cargar_datos()
 
-
 st.sidebar.title("⚙️ Panel de Control")
 st.sidebar.markdown("Filtra el inventario aquí:")
-
 
 condiciones = st.sidebar.multiselect(
     "Condición del Vehículo:",
@@ -119,7 +113,7 @@ condiciones = st.sidebar.multiselect(
 marcas = st.sidebar.multiselect(
     "Selecciona Marcas:",
     options=sorted(df["Marca"].unique()),
-    default=sorted(df["Marca"].unique())[:5] # 5 por defecto
+    default=sorted(df["Marca"].unique())[:5] 
 )
 
 
@@ -249,13 +243,13 @@ with tab2:
         st.plotly_chart(fig_line, use_container_width=True)
 
 with tab3:
-        st.write("### Detección de Ofertas Atípicas por Marca")
+        st.write("### Detección de Ofertas Atípicas por Modelo")
         
         st.caption("¿De qué manera el comportamiento de los precios permite detectar ofertas atípicas que se desvíen de la tendencia central del mercado?")
         
         fig_box = px.box(
             df_filtrado, 
-            x='Marca', 
+            x='Modelo', 
             y='Precio', 
             color='Condicion', 
             color_discrete_map={'Nuevo': '#FFC0CB', 'Usado': '#B39DDB'}
@@ -264,7 +258,7 @@ with tab3:
         fig_box.update_layout(
             paper_bgcolor="rgba(0,0,0,0)", 
             plot_bgcolor="rgba(0,0,0,0)",
-            xaxis_title="Marcas de Vehículos",
+            xaxis_title="Modelos de Vehículos",
             yaxis_title="Precio ($)",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
