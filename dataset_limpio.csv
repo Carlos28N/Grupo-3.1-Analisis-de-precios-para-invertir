@@ -1,6 +1,6 @@
 import pandas as pd
 
-archivo_original = "6. Precios de carros LIMPIO (2).csv"
+archivo_original = "6. Precios de carros (2).csv"
 df = pd.read_csv(archivo_original, on_bad_lines='skip')
 
 filas_iniciales = len(df)
@@ -60,6 +60,3 @@ df['Modelo'] = df['Modelo'].str.replace(r'(\d) Series', r'Serie \1', regex=True)
 df = df.dropna(subset=['Condicion'])
 
 df.to_csv("dataset_limpio.csv", index=False)
-
-print(df.head(10)) 
-print("-" * 60)
