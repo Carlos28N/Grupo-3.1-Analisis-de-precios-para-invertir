@@ -22,7 +22,7 @@ En base a nuestras preguntas de investigación, buscamos:
 
 
 ##### Informe dinámico con Rmarkdown: https://github.com/Carlos28N/Grupo-3.1-Analisis-de-precios-para-invertir/blob/main/Informe.pdf
-##### Dashboard con Python: 
+##### Dashboard con Python: https://grupo-3-1-analisis-de-precios-para-rzus.onrender.com
 
 
 
