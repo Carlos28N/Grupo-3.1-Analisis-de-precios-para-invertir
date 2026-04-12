@@ -1,0 +1,4 @@
+Librerías:
+Pandas.
+StronglY
+Plotly. 
