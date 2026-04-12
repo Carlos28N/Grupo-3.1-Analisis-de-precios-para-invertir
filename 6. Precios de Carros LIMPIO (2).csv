@@ -1,7 +1,4 @@
-import streamlit as st
 import pandas as pd
-import plotly.express as px
-
 
 archivo_original = "6. Precios de carros (2).csv"
 df = pd.read_csv(archivo_original, on_bad_lines='skip')
