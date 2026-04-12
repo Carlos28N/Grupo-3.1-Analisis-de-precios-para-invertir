@@ -61,14 +61,5 @@ df = df.dropna(subset=['Condicion'])
 
 df.to_csv("dataset_limpio.csv", index=False)
 
-
-print("-" * 60)
-print("DATASET TOTALMENTE LIMPIO")
-print("-" * 60)
-print("\n VISTA PREVIA")
-
-pd.set_option('display.max_columns', None)
-pd.set_option('display.width', 1000)
-
 print(df.head(10)) 
 print("-" * 60)
