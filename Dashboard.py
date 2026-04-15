@@ -196,7 +196,7 @@ with tab1:
                 font-size: 13px;
                 border-bottom: 2px solid rgba(255, 192, 203, 0.5) !important;
             }
-            /* Efecto al pasar el mouse (opcional, se ve muy pro) */
+            /* Efecto al pasar el mouse */
             tbody tr:hover {
                 background-color: rgba(255, 255, 255, 0.05) !important;
             }
@@ -206,13 +206,13 @@ with tab1:
         col_tabla1, col_tabla2 = st.columns(2)
 
         with col_tabla1:
-            st.write("### ✨ Top 5: Vehículos Más Caros")
+            st.write("### Top 5: Vehículos Más Caros")
             top_caros = df_filtrado.nlargest(5, 'Precio')[['Marca', 'Modelo', 'Año', 'Precio']].reset_index(drop=True)
             top_caros['Precio'] = top_caros['Precio'].apply(lambda x: f"${x:,.2f}")
             st.table(top_caros) 
 
         with col_tabla2:
-            st.write("### 🏷️ Top 5: Vehículos Más Baratos")
+            st.write("### Top 5: Vehículos Más Baratos")
             top_baratos = df_filtrado.nsmallest(5, 'Precio')[['Marca', 'Modelo', 'Año', 'Precio']].reset_index(drop=True)
             top_baratos['Precio'] = top_baratos['Precio'].apply(lambda x: f"${x:,.2f}")
             st.table(top_baratos)
@@ -243,13 +243,13 @@ with tab2:
         st.plotly_chart(fig_line, use_container_width=True)
 
 with tab3:
-        st.write("### Detección de Ofertas Atípicas por Modelo")
+        st.write("### Detección de Ofertas Atípicas por Marca")
         
         st.caption("¿De qué manera el comportamiento de los precios permite detectar ofertas atípicas que se desvíen de la tendencia central del mercado?")
         
         fig_box = px.box(
             df_filtrado, 
-            x='Modelo', 
+            x='Marca', 
             y='Precio', 
             color='Condicion', 
             color_discrete_map={'Nuevo': '#FFC0CB', 'Usado': '#B39DDB'}
@@ -258,7 +258,7 @@ with tab3:
         fig_box.update_layout(
             paper_bgcolor="rgba(0,0,0,0)", 
             plot_bgcolor="rgba(0,0,0,0)",
-            xaxis_title="Modelos de Vehículos",
+            xaxis_title="Marcas de Vehículos",
             yaxis_title="Precio ($)",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
