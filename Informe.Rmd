@@ -105,7 +105,7 @@ El presente trabajo de investigación, a través del procesamiento avanzado en R
   
   \item El \textbf{Capítulo III} describe el Marco Metodológico, detallando el proceso de limpieza de datos,  la conversión de variables, el filtrado de datos e inspección de variables.
     
-  \item El \textbf{Capítulo IV} presenta el Análisis de Resultados, donde se exhiben las tablas y gráficos generados dinámicamente, análisis por categoría (boxplits), dispersión por marcas y segmento de entrada (Q1)
+  \item El \textbf{Capítulo IV} presenta el Análisis de Resultados, donde se exhiben las tablas y gráficos generados dinámicamente, análisis por categoría, dispersión por marcas y segmento de entrada (Q1)
     
   \item Para concluir, el \textbf{Capítulo V} integra las conclusiones derivadas del estudio descriptivo y de forma, proponiendo una hoja de ruta estratégica para la adquisición de activos que identifica al segmento ejecutivo del primer cuartil como el nicho de inversión con mayor estabilidad y previsibilidad estadística
 \end{itemize}
@@ -249,17 +249,17 @@ El Análisis Exploratorio de Datos es el pilar fundamental para resumir las cara
 \end{itemize}
 
 \subsection*{Depreciación y Análisis Temporal}
-\addcontentsline{toc}{subsection}{2.4 Depreciación y Análisis Temporal}
+\addcontentsline{toc}{subsection}{2.3 Depreciación y Análisis Temporal}
 
 Como el año de fabricación es clave, podemos ver los precios como algo que cambia con el tiempo debido a la depreciación. Al analizar esta tendencia, podemos saber si el valor del carro cae de forma constante o si se desploma más rápido a medida que pasan los años o aumenta el kilometraje.
 
 \subsection*{Medidas de Dispersión y Variabilidad}
-\addcontentsline{toc}{subsection}{2.5 Medidas de Dispersión y Variabilidad}
+\addcontentsline{toc}{subsection}{2.4 Medidas de Dispersión y Variabilidad}
 
 Para determinar el impacto de la categoría y la marca, se requiere analizar la dispersión de los datos. El coeficiente de variación y la desviación estándar permiten contrastar si el mercado de vehículos presenta un comportamiento homogéneo o si hay una bomba de volatilidad que distorciona el precio.
 
 \subsection*{Análisis de la Forma y Asimetría}
-\addcontentsline{toc}{subsection}{2.6 Análisis de la Forma y Asimetría}
+\addcontentsline{toc}{subsection}{2.5 Análisis de la Forma y Asimetría}
 
 Para detallar la distribución de los datos, se utilizaron dos indicadores clave:
 
@@ -284,7 +284,7 @@ Los resultados obtenidos se analizarán de la siguiente manera:
 \end{itemize}
 
 \subsection*{Relación entre Variables (Correlación de Pearson)}
-\addcontentsline{toc}{subsection}{2.7 Relación entre Variables (Correlación de Pearson)}
+\addcontentsline{toc}{subsection}{2.6 Relación entre Variables (Correlación de Pearson)}
 
 Para determinar si el precio \textbf{Y} tiene una relación lineal directa con variables como el kilometraje o el año \textbf{X}, se aplicó el Coeficiente de Correlación de Pearson ($P_{xy}$), utilizando la siguiente expresión:
 
@@ -293,7 +293,7 @@ El resultado, que oscila entre -1 (se mueven en direcciones opuestas) y 1 (corre
 $$\rho_{XY} = \frac{Cov(X,Y)}{\sqrt{Var(X) \cdot Var(Y)}}$$
 
 \subsection*{Comparación de Grupos (Varianza)}
-\addcontentsline{toc}{subsection}{2.8 Comparación de Grupos (Varianza)}
+\addcontentsline{toc}{subsection}{2.7 Comparación de Grupos (Varianza)}
 
 Se estudiará la variabilidad de los precios según la categoría del vehículo (SUV, Compacto, etc.). A través de la Varianza, mediremos qué tan dispersos están los precios en cada grupo. Esto nos servirá para identificar en qué categorías los precios son más estables y en cuáles hay más cambios, lo que es clave para decidir dónde invertir.
 
@@ -317,7 +317,7 @@ En esta sección se presentan las metodologías, procedimientos y pruebas estad�
 
 
 \subsection*{Renombramiento de variables }
-\addcontentsline{toc}{subsection}{2.3 Renombramiento de variables}
+\addcontentsline{toc}{subsection}{3.1 Renombramiento de variables}
 
 Se renombra las variables que están en inglés por español para su comprensión al público habla castellana. Además, se ha categorizado la variable "Modelo" para que todos los leyentes puedan comprenderlo con más facilidad, dado que el dataset contiene 28 modelos distintos que requiere un nivel más avanzado de conocimiento de vehículos. Sin embargo, nuestro proyecto hace énfasis en que está centrado a un cualquier tipo público para que logre comprender las siguientes categorías: 
 
@@ -447,7 +447,7 @@ realdt %>%
 ```
 
 \subsection*{Inspección de vehículos eléctricos}
-\addcontentsline{toc}{subsection}{3.3 Inspección de vehículos eléctricos}
+\addcontentsline{toc}{subsection}{3.2 Inspección de vehículos eléctricos}
 
 A pesar de Se llevó a cabo una corrección de valores atípicos e imposibles mediante la reasignación del Tamaño_del_motor a 0 para todos los vehículos de categoría eléctrica. Este ajuste elimina errores de registro y alinea el dataset con las especificaciones técnicas reales de esta tecnología.
 
@@ -554,16 +554,16 @@ El presente capítulo expone los hallazgos obtenidos tras el procesamiento y an�
 
 Para establecer un punto de referencial en la valoración de los activos vehiculares, se calcularon las medidas de tendencia central y dispersión de todo el parque automotor sin segmentar. El valor esperado o precio medio de un vehículo en este mercado se sitúa en $52,896.84.
 
-Sin embargo, este valor central debe interpretarse con cautela debido a la alta heterogeneidad del mercado. La varianza global asciende a 745,393,195.32, una cifra cuadrática de gran magnitud que, al ser traducida a su desviación estándar ($27,301.89), nos permite calcular un Coeficiente de Variación (CV) de 51.61%. En términos estadísticos, un CV superior al 50% indica una dispersión alta; los precios de los vehículos fluctúan masivamente alrededor de la media, lo cual es congruente con un mercado que agrupa desde vehículos compactos económicos hasta SUVs de ultra lujo.
+Sin embargo, este valor central debe interpretarse con cautela debido a la alta heterogeneidad del mercado. La varianza global asciende a 745,393,195.32, una cifra cuadrática de gran magnitud que, al ser traducida a su desviación estándar ($27,301.89), nos permite calcular un Coeficiente de Variación (CV) de 51.61%. En términos estadísticos, un CV superior al 50% indica una dispersión alta; los precios de los vehículos fluctúan masivamente alrededor de la media, lo cual es significativamente razonable con un mercado que agrupa desde vehículos compactos económicos hasta SUVs de ultra lujo, sin embargo, más adelante veremos estos cálculos segmentados en grupos más pequeños para contrastar. 
 
-Adicionalmente, se evaluó la relación lineal entre el precio del activo y su nivel de uso (kilometraje) mediante el coeficiente de correlación de Pearson. El resultado obtenido fue de 0.01, un valor que denota la ausencia total de correlación lineal. Esto sugiere un comportamiento atípico en el mercado analizado: la depreciación estándar por desgaste no está dictando el precio final. Factores categóricos, como el segmento al que pertenece el vehículo, asumen el protagonismo en la estructura de costos.
+Adicionalmente, se evaluó la relación lineal entre el precio del activo y su nivel de uso en kilometraje, mediante el coeficiente de correlación de Pearson. El resultado obtenido fue de 0.01, un valor que denota la ausencia total de correlación lineal. Esto sugiere un comportamiento atípico en el mercado analizado: la depreciación estándar por desgaste no está dictando el precio final. Factores categóricos, como el segmento al que pertenece el vehículo, asumen el protagonismo en la estructura de costos.
 
 
 
 \subsection*{Análisis de Relación entre Precio Y Marca}
 \addcontentsline{toc}{subsection}{4.2 Análisis de Relación entre Precio y Marca}
 
-Las medidas estadísticas globales del mercado reflejan una fuerte dispersión en los datos. El precio medio esperado de los vehículos se ubica en 52,896.84 dólares, acompañado de una desviación estándar sumamente alta de 27,301.89 dólares. Esta amplia variabilidad indica que los precios de los automóviles experimentan fluctuaciones drásticas a lo largo de todo el conjunto de datos.
+Las medidas estadísticas globales del mercado reflejan una fuerte dispersión en los datos. El precio medio esperado de los vehículos se ubica en 52,896.84 dólares, acompañado de una desviación estándar sumamente alta de 27,301.89 dólares. Esta amplia variabilidad indica que los precios de los automóviles tiene alta volatilidad a lo largo de todo el conjunto de datos.
 
 ```{r tabla_global, echo=FALSE, message=FALSE, warning=FALSE}
 library(dplyr)
@@ -611,7 +611,7 @@ kable(coef_matrix,
       caption = "Contraste Individual de Marcas respecto al Promedio de Audi")
 ```
 
-Todos los p-valores obtenidos en el contraste superan ampliamente el margen de tolerancia estadística. El fabricante que presenta la mayor desviación respecto a la base es BMW con un p-valor de 0.131, mientras que otros como Mercedes alcanzan un 0.857. Esto comprueba de manera matemática que no hay evidencia suficiente para afirmar que una marca sea sistemáticamente más costosa o económica que otra.
+Todos los p-valores obtenidos en el contraste superan ampliamente el margen de tolerancia estadística. El fabricante que presenta la mayor desviación respecto a la base es BMW con un p-valor de 0.131, mientras que otros como Mercedes alcanzan un 0.857. Esto comprueba de manera matemática que no hay evidencia suficiente para afirmar que una marca sea más costosa o económica que otra.
 
 
 \subsection*{Comportamiento Estructural por Categoría de Modelo (Análisis de Forma)
@@ -619,7 +619,7 @@ Todos los p-valores obtenidos en el contraste superan ampliamente el margen de t
 \addcontentsline{toc}{subsection}{4.2 Comportamiento Estructural por Categoría de Modelo (Análisis de Forma)
 }
 
-Al segmentar la base de datos en seis grandes categorías (Compacto, Deportivo, Ejecutivo, Sedan Familiar, SUV y SUV de Lujo), se observan dinámicas de precios fuertemente diferenciadas, evidenciadas tanto en la Tabla 3 como en la detección de atípicos (Boxplot).
+Al segmentar la base de datos en seis grandes categorías (Compacto, Deportivo, Ejecutivo, Sedan Familiar, SUV y SUV de Lujo), se observan dinámicas de precios fuertemente diferenciadas, evidenciadas tanto en la Tabla 3 como en la detección de sus extremos.
 
   
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
@@ -675,64 +675,31 @@ kable(tabla_general,
 \begin{itemize}
   \item \textbf{Liderazgo de Precios:} Contra las asunciones clásicas del mercado, el modelo Sedan Familiar presenta el valor esperado más alto (\$54,141.23), seguido muy de cerca por el modelo Ejecutivo (\$53,913.32).
 
-  \item \textbf{El Caso del Modelo Deportivo:} Resulta contraintuitivo que el modelo Deportivo presente la media más baja del mercado (\$45,034.11) y, simultáneamente, la mayor asimetría de Pearson (0.63). Al contrastar esto con el gráfico de cajas y bigotes, observamos que el rombo de la media (\$45,034) está significativamente por encima de la línea de la mediana (aproximadamente \$39,000). Esta asimetría positiva fuerte confirma que la mayoría de los vehículos deportivos en este dataset tienen precios accesibles, pero existe una "cola derecha" de vehículos extremadamente costosos que arrastran el promedio general hacia arriba.
+  \item \textbf{El Caso del Modelo Deportivo:} Resulta contraintuitivo que el modelo Deportivo presente la media más baja del mercado (\$45,034.11) y, simultáneamente, la mayor asimetría de Pearson (0.63). Al contrastar esto con el gráfico de cajas y bigotes, observamos que el rombo de la media (\$45,034) está significativamente por encima de la línea de la mediana. Esta asimetría positiva fuerte confirma que la mayoría de los vehículos deportivos en este dataset tienen precios accesibles, pero existe una "cola derecha" de vehículos extremadamente costosos que arrastran el promedio general hacia arriba.
 
-  \item \textbf{Asimetría y Curtosis:} A excepción del modelo SUV (asimetría casi nula de 0.02) y el Deportivo, el resto de las categorías presentan asimetrías negativas leves (entre -0.06 y -0.26). Esto indica una ligera concentración de vehículos en los rangos de precios más altos dentro de sus respectivas cajas.
+  \item \textbf{Asimetría y Curtosis:} A excepción del modelo SUV con una asimetría casi nula de 0.02 y el deportivo, el resto de las categorías presentan asimetrías negativas leves (entre -0.06 y -0.26). Esto indica una ligera concentración de vehículos en los rangos de precios más altos dentro de sus respectivas cajas.
 
-  \item \textbf{Índice de Geary:} Todas las categorías muestran un Índice de Geary oscilante entre 0.86 y 0.88. Dado que el valor teórico para una distribución perfectamente normal es aproximadamente 0.7979, valores tan cercanos a 0.9 sugieren distribuciones de colas ligeras, acercándose más a un comportamiento uniforme dentro de los rangos intercuartílicos.
+  \item \textbf{Índice de Geary:} Todas las categorías muestran un Índice de Geary oscilante entre 0.86 y 0.88. Dado que el valor teórico para una distribución perfectamente normal es aproximadamente 0.8, valores tan cercanos a 0.9 sugieren distribuciones de colas ligeras.
+  
 \end{itemize}
 
-
-
-\subsection*{Densidad y Distribución por Marcas}
-\addcontentsline{toc}{subsection}{4.3 Densidad y Distribución por Marcas}
-
-Para profundizar en la dispersión observada en las medidas previas, se analizó el gráfico de dispersión segmentado por marcas (Audi, BMW, Ford, Honda, Mercedes, Tesla, Toyota) dentro de cada categoría.
-
-El panel de correlación visual revela un comportamiento estructural altamente uniforme. A diferencia de un mercado tradicional donde marcas como Mercedes o Audi se agruparían exclusivamente en la banda superior de los \$75,000 - \$100,000, los datos muestran que todas las marcas tienen presencia en absolutamente todos los espectros de precios (desde los \$10,000 hasta los \$100,000) dentro de casi todas las categorías.
-
-Los datos aparecen repartidos de forma muy pareja por todo el gráfico, explica perfectamente la altísima varianza global y corrobora el Índice de Geary: los precios están distribuidos casi uniformemente a lo largo del eje Y, lo que indica que, en esta muestra poblacional específica, el prestigio de la marca no está operando como una variable restrictiva con respecto al precio.
-
-
-
-```{r echo=FALSE}
-realdt %>%
-  filter(Modelo %in% c("Deportivo", "SUV", "Compacto", "SUV de Lujo", "Ejecutivo", "Sedan Familiar")) %>% 
-  ggplot(aes(x = Marca, y = Precio, color = Marca)) +
-  geom_jitter(alpha = 0.5, size = 1) +
-  # Creación de tabla por Modelo
-  facet_wrap(~Modelo, scales = "free_x") + 
-  scale_y_continuous(labels = scales::dollar) +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_blank(), 
-    legend.position = "bottom",
-    strip.background = element_rect(fill = "lightgrey"), 
-    strip.text = element_text(face = "bold")
-  ) +
-  labs(title = "Distribución de Precios por Segmento y Marca",
-       subtitle = "Cada panel representa una categoría distinta")
-```
-
 \subsection*{Análisis de Viabilidad en el Segmento de Entrada (Primer Cuartil)}
-\addcontentsline{toc}{subsection}{4.4 Análisis de Viabilidad en el Segmento de Entrada (Primer Cuartil)}
+\addcontentsline{toc}{subsection}{4.3 Análisis de Viabilidad en el Segmento de Entrada (Primer Cuartil)}
 
-Desde una perspectiva de inversión, resulta vital aislar el comportamiento de los activos más accesibles. La Tabla 4 recoge los estadísticos exclusivos del Primer Cuartil (Q1), es decir, el 25% de los vehículos más económicos de todo el mercado poblacional.
-
-El cambio en la dispersión es drástico y sumamente revelador:
+Desde una perspectiva de inversión, resulta vital aislar el comportamiento de los activos más accesibles. La Tabla 6 recoge los estadísticos exclusivos del Primer Cuartil (Q1), es decir, el 25% de los vehículos más económicos de todo el dataset:
 
 \begin{itemize}
-  \item \textbf{Reducción de la Varianza:} Al limitar el análisis al Q1, las varianzas caen de un promedio de 750 millones a un rango de 41 a 52 millones. Esto demuestra que la volatilidad extrema calculada en el apartado 4.1 es un subproducto exclusivo de la brecha entre la gama alta y la baja. El segmento de entrada es estadísticamente mucho más estable y predecible.
-  \item \textbf{Composición de la Oferta (N):} La columna de Muestras (N) nos brinda la cuota de mercado en este segmento económico. El modelo Ejecutivo domina masivamente con 142 unidades, seguido por las SUVs (98) y los Compactos (87). Sorprendentemente, modelos percibidos como de alto costo, como los Deportivos y los Sedanes Familiares, tienen una representación raquítica en este cuartil (23 y 28 unidades respectivamente).
-  \item \textbf{Valoración Económica Máxima:} Si un inversionista desea adquirir un vehículo del segmento Ejecutivo que pertenezca estrictamente a este 25% más económico del mercado, el valor esperado que deberá desembolsar es de $17,697.26, con una desviación muy contenida y un índice de Geary estable (0.85).
+  \item \textbf{Reducción de la Varianza:} Al limitar el análisis al Q1, las varianzas caen de un promedio de 750 millones a un rango de 41 a 52 millones. El segmento de entrada es estadísticamente mucho más estable y predecible que el general.
+  \item \textbf{Composición de la Oferta (N):} La columna de Muestras (N) nos brinda la cuota de mercado en este segmento económico. El modelo Ejecutivo domina masivamente con 142 unidades, seguido por las SUVs con 98 unidades y los Compactos con 87 unidades. Modelos percibidos como de alto costo, como los Deportivos y los Sedanes Familiares, tienen una presencia mínima en este cuartil con 23 y 28 unidades respectivamente.
+  \item \textbf{Valoración Económica Máxima:} Si un inversionista desea adquirir un vehículo del segmento Ejecutivo que pertenezca estrictamente a este 25% más económico del mercado, el valor esperado que deberá desembolsar es de $17,697.26, con una desviación contenida y un índice de Geary estable (0.85).
 \end{itemize}  
   
 
 ```{r tabla_stats_q1, echo=FALSE, message=FALSE, warning=FALSE}
-# Creación del cuartil 1
+# creación del cuartil 1
 cuartil_1 <- quantile(realdt$Precio, 0.25, na.rm = TRUE)
 
-# Creación de la tabla de resumen filtrada
+# tabla de resumen filtrada
 tabla_q1 <- realdt %>%
   filter(!is.na(Modelo), !is.na(Precio)) %>%
   filter(Precio <= cuartil_1) %>% 
@@ -742,11 +709,11 @@ tabla_q1 <- realdt %>%
     Varianza = var(Precio),
     Asimetria_Pearson = 3 * (mean(Precio) - median(Precio)) / sd(Precio),
     Geary = mean(abs(Precio - mean(Precio))) / sqrt(mean((Precio - mean(Precio))^2)),
-    N_Vehiculos = n() # Valor para saber cuántos entraron en esta categoría 
+    N_Vehiculos = n() # valor para saber cuántos entraron en esta categoría 
   ) %>%
   arrange(desc(Valor_Esperado))
 
-# Renderizado en LaTeX
+# renderizado en LaTeX
 kable(tabla_q1, 
       format = "latex", booktabs = TRUE,
       col.names = c("Modelo", "Valor Esperado ($)", "Varianza", "Asimetría (Pearson)", "Índice Geary", "Muestra (N)"),
@@ -773,32 +740,30 @@ kable(tabla_q1,
 \end{flushright}
 \rule{\textwidth}{2pt}
 
-Tras la aplicación de técnicas de estadística descriptiva, análisis de dispersión y evaluación de asimetrías sobre el conjunto de datos automotrices, se ha logrado decodificar el comportamiento del mercado secundario, dando respuesta a las interrogantes planteadas al inicio de esta investigación. Las conclusiones fundamentales que se extraen de este estudio son las siguientes:
+Tras la aplicación de técnicas de estadística descriptiva, análisis de dispersión y evaluación de asimetrías sobre el conjunto de datos automotrices, se ha logrado ten una vista mejorada del comportamiento del mercado secundario, dando respuesta a las interrogantes planteadas al inicio de esta investigación. Las conclusiones fundamentales que se extraen de este estudio son las siguientes:
 
 \begin{itemize}
-  \item \textbf{1. La irrelevancia estadística del desgaste lineal (El mito del kilometraje):}
-Históricamente, se ha asumido que el uso de un vehículo dicta su depreciación. Sin embargo, el cálculo del coeficiente de correlación de Pearson arrojó un valor de 0.01 entre el precio y el kilometraje. Esta ausencia total de correlación lineal demuestra que, en el mercado actual, la depreciación estándar por desgaste físico no es el factor determinante en la fijación del precio final. Factores cualitativos, categóricos y de demanda sectorial han desplazado al kilometraje como indicador de valor.
-  \item \textbf{2. La homogeneidad de las marcas frente a la heterogeneidad de los precios:}
-El análisis de densidad y distribución refutó la hipótesis de que las marcas de lujo operan en un estrato de precios aislado. El diagrama de dispersión evidenció que marcas de prestigio tradicional y marcas generalistas coexisten en todos los cuartiles de precios (desde los \$10,000 hasta los \$100,000). Este comportamiento de "ruido blanco" indica que el emblema o la marca del vehículo ha perdido su poder como variable restrictiva absoluta, cediendo su lugar a la configuración específica del modelo y la categoría tecnológica.
+  \item \textbf{1. La irrelevancia estadística del desgaste por kilometraje}
+En vehículos, históricamente, se ha asumido que el uso de un vehículo dicta su depreciación. Sin embargo, el cálculo del coeficiente de correlación de Pearson arrojó un valor de 0.01 entre el precio y el kilometraje. Esta ausencia total de correlación lineal demuestra que, en el mercado actual, la depreciación estándar por desgaste físico no es el factor determinante en la fijación del precio final. Factores cualitativos, categóricos y de demanda sectorial han desplazado al kilometraje como indicador de valor, aunque ya se vio que no afecta realmente.
+  \item \textbf{2. La homogeneidad de las marcas frente a la heterogeneidad de los precios}
+El análisis de densidad y distribución se lució con la hipótesis de que las marcas de lujo operan en un estrato de precios aislado. La tabla evidenció que marcas de prestigio tradicional y marcas generalistas coexisten en todos los cuartiles de precios (desde los \$10,000 hasta los \$100,000). Esta homogeneidad en la distribución de precios indica que el emblema o la marca del vehículo ha dejado de funcionar como un factor determinante, cediendo su relevancia a la configuración específica del modelo y su categoría tecnológica. 
   \item \textbf{3. La paradoja del modelo Deportivo:}
-El análisis de forma reveló hallazgos contraintuitivos respecto a las categorías vehiculares. El modelo "Deportivo", a pesar de su percepción de exclusividad, presentó el valor esperado más bajo del mercado global (\$45,034.11). No obstante, su coeficiente de asimetría de Pearson fuertemente positivo (0.63) confirma que este segmento está compuesto mayoritariamente por vehículos accesibles, pero cuenta con una "cola derecha" de unidades extremadamente costosas que distorsionan el promedio.
+El análisis de forma reveló hallazgos contraintuitivos respecto a las categorías vehiculares. El modelo Deportivo, a pesar de su percepción de exclusividad, presentó el valor esperado más bajo del mercado global (\$45,034.11). No obstante, su coeficiente de asimetría de Pearson fuertemente positivo (0.63) confirma que este segmento está compuesto mayoritariamente por vehículos accesibles, pero cuenta con un rango de cuartil de unidades extremadamente costosas que distorsionan el promedio.
   \item \textbf{4. Concentración de volatilidad en las gamas altas:}
-La varianza global del mercado ascendió a niveles sumamente altos (745,393,195.32), con un Coeficiente de Variación superior al 50%. Sin embargo, al segmentar el estudio hacia el Primer Cuartil (Q1), la varianza colapsó a un rango de 41 a 52 millones. Esto concluye estadísticamente que la inestabilidad y el riesgo financiero del mercado automotriz se concentran exclusivamente en las gamas medias-altas y altas; el segmento económico opera bajo parámetros mucho más predecibles y estables.
+La varianza global del mercado asciende a 745,393,195.32, con un Coeficiente de Variación superior al 50%. Sin embargo, al segmentar el estudio hacia el Primer Cuartil (Q1), la varianza bajó a un rango de 41 a 52 millones. Esto concluye estadísticamente que la inestabilidad y el riesgo financiero del mercado automotriz se concentran exclusivamente en las gamas medias-altas y altas; el segmento económico opera bajo parámetros mucho más predecibles y estables.
   \item \textbf{5. No hay relación entre marca y precio}
   Se determina que el mercado automotriz analizado no segmenta sus precios según el emblema del fabricante. Las diferencias monetarias que se observan entre los vehículos son producto de la alta varianza general del mercado, lo que significa que la marca carece de capacidad predictiva para determinar el valor final de un automóvil.
 \end{itemize}
 
 ### Recomendaciones para la Inversión Automotriz
 
-Con base en la evidencia cuantitativa recolectada, el objetivo de maximizar el Retorno de Inversión (ROI) y mitigar el riesgo de depreciación estocástica requiere abandonar los enfoques de compra tradicionales. Se plantean las siguientes recomendaciones estratégicas para los inversionistas del mercado secundario:
-
 \begin{itemize}
   \item \textbf{1. Estrategia de Inversión Focalizada en el Primer Cuartil (Q1):}
-Se desaconseja rotundamente la inversión especulativa en el mercado global o en vehículos que superen el umbral de la mediana del mercado. El capital debe inyectarse exclusivamente en vehículos que pertenezcan al Primer Cuartil (el 25% más económico). En este segmento, la reducción drástica de la varianza protege al inversionista contra fluctuaciones extremas de precio y facilita la liquidez del activo al momento de la reventa.
+Se desaconseja rotundamente la inversión especulativa en el mercado global o en vehículos que superen el umbral de la mediana del mercado. El capital debe inyectarse exclusivamente en vehículos que pertenezcan al Primer Cuartil, o decir, el 25% más económico. En este segmento, la reducción drástica de la varianza protege al inversionista contra fluctuaciones extremas de precio y facilita la liquidez del activo al momento de la reventa.
   \item \textbf{2. Priorización del Segmento "Ejecutivo" como Activo Refugio:}
-Los datos señalan de manera contundente al modelo Ejecutivo como el vehículo óptimo para la inversión. Dentro del ecosistema de bajo riesgo (Q1), este modelo presenta la mayor disponibilidad poblacional (142 unidades de muestra), lo que garantiza un mercado secundario activo y fluido. Un inversionista que adquiera un sedán Ejecutivo en este segmento desembolsará un valor esperado de \$17,697.26, adquiriendo un vehículo con estatus comercial alto, pero a un precio de entrada blindado contra la alta volatilidad.
+Los datos señalan de manera contundente al modelo Ejecutivo como el vehículo óptimo para la inversión. Dentro del ecosistema de bajo riesgo (Q1), este modelo presenta la mayor disponibilidad poblacional de 142 unidades de muestra, lo que garantiza un mercado secundario activo y fluido. Un inversionista que adquiera un sedán Ejecutivo en este segmento desembolsará un valor esperado de \$17,697.26, adquiriendo un vehículo con estatus comercial alto, pero a un precio de entrada blindado contra la alta volatilidad.
   \item \textbf{3. Desestimar el Kilometraje como Criterio de Descarte:}
-Dado que la correlación entre precio y kilometraje es estadísticamente nula, los inversionistas no deben descartar vehículos basándose únicamente en un odómetro elevado. La búsqueda de oportunidades ("outliers" o anomalías de mercado) debe enfocarse en la categoría del vehículo y su condición mecánica actual, aprovechando la asimetría de información de aquellos vendedores que aún castigan severamente el precio de sus vehículos por tener un alto kilometraje.
+Dado que la correlación entre precio y kilometraje es estadísticamente nula, los inversionistas no deben descartar vehículos basándose únicamente en un odómetro elevado. La búsqueda de oportunidades debe enfocarse en la categoría del vehículo y su condición mecánica actual, aprovechando la asimetría de información de aquellos vendedores que aún castigan severamente el precio de sus vehículos por tener un alto kilometraje.
   \item \textbf{4. Evitar la Segmentación Basada en la Marca:}
 Se recomienda a los analistas financieros y compradores abstenerse de pagar sobreprecios justificados únicamente por el emblema del fabricante. Como demostró el Índice de Geary y la distribución uniforme, el mercado actual castiga y premia los precios independientemente de la casa matriz. Las decisiones de adquisición deben basarse en las medidas de forma y dispersión del modelo específico, no en la marca que lo respalda.
 \end{itemize}
